@@ -1,20 +1,21 @@
 import { forwardRef } from "react";
 import { mulish } from "@/utils/fonts";
-import "@/app/app.css"
+import styles from "./hero.module.css"
 
-const Hero = forwardRef<HTMLDivElement,{}>((__,ref) => {
+const Hero = forwardRef<HTMLDivElement>((__,ref) => {
   return (
-    <div ref={ref} className=" flex relative w-screen justify-center items-center md:mt-40 flex-wrap gap-x-24 gap-y-9 ">
-      <div className="w-96 px-4 md:p-0 order-2 sm:order-1 relative">
-        <h1 className={`${mulish} text-clamp-lg w-fit mb-8 mt-4`}>M Tariq</h1>
-        <p className={`paragraph font-lucida relative md:left-[3rem] w-fit text-xl`}>
-          <span className="font-bold bg-[linear-gradient(to_right,_#fac37b,_transparent)]">
+    <div ref={ref} className={styles.container}>
+      <div className={styles.textContainer}>
+        <h1 style={{width: 'fit-content', marginBottom: '2rem', marginTop: '1rem', fontSize: 'clamp(40px, 5vw + 1rem, 60px)'}}
+          className={`${mulish}`}>M Tariq</h1>
+        <p className={styles.paragraph}>
+          <span style={{fontWeight: 'bold', background: 'linear-gradient(to right, #fac37b, transparent)'}}>
             Frontend Developer
           </span>
           , with knowledge in web development and design, i offer the best
           projects resulting in qualitywork
         </p>
-        <div className="relative hidden md:block rotate-45 left-60 top-32">
+        <div className={styles.svgContainer}>
           <svg
             width="53"
             height="81"
@@ -31,12 +32,12 @@ const Hero = forwardRef<HTMLDivElement,{}>((__,ref) => {
           </svg>
         </div>
       </div>
-      <div className=" order-1 sm:order-2 relative ">
-        <div className="w-72 z-10 relative order-1 sm:order-2">
-          <img className="object-cover w-screen" src="/profile.jpg" alt="" />
+      <div className={styles.imageOuterContainer}>
+        <div className={styles.imageInnerContainer}>
+          <img style={{width: '100vw', objectFit: 'cover'}}  src="/profile.jpg" alt="" />
         </div>
-        <div className="w-72 h-[25rem] top-4 left-4 bg-gray-200 absolute border-4 border-black"></div>
-        <div className="absolute">
+        <div className={styles.boderBox}></div>
+        <div style={{position: 'absolute'}}>
           
         </div>
       </div>
@@ -44,4 +45,5 @@ const Hero = forwardRef<HTMLDivElement,{}>((__,ref) => {
   );
 })
 
+Hero.displayName = "Hero";
 export default Hero

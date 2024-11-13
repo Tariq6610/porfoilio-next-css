@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.25rem;
+  }
+  
+.textContainer {
+    width: 24rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    order: 2;
+}
+  
+
+.paragraph {
+    font-family: 'Lucida', sans-serif;
+    position: relative;
+    width: fit-content;
+    font-size: 1.25rem;
+  }
+  
+
+.paragraph ::before{
+    content: "";
+    background-color: black;
+    width: 30px;
+    height: 2px;
+    position: absolute;
+    left: -2.75rem;
+    top: 0.8rem;
+}
+
+.svgContainer {
+    position: relative;
+    display: none;
+    transform: rotate(45deg);
+    left: 15rem;
+    top: 8rem;
+  }
+
+.imageOuterContainer {
+    order: 1;
+    position: relative;
+  }
+  
+  .imageInnerContainer {
+    width: 18rem;
+    z-index: 10;
+    position: relative;
+    order: 1;
+}
+
+.boderBox{
+  width: 18rem;
+  height: 25rem;
+  top: 1rem;
+  left: 1rem;
+  background-color: #e5e7eb; 
+  position: absolute;
+  border: 4px solid black;
+}
+
+  
+
+  
+  
+
+  
+  
+@media (min-width: 640px) {
+    .textContainer {
+      order: 1;
+    }
+
+    .imageOuterContainer {
+      order: 2;
+    }
+
+    .imageInnerContainer {
+      order: 2;
+    }
+  }
+ 
+  
+
+@media (min-width: 768px) {
+    .container {
+      margin-top: 10rem;
+      column-gap: 6rem;
+    }
+
+    .textContainer {
+        padding: 0;
+      }
+
+    .paragraph {
+        left: 3rem;
+      }
+
+      .svgContainer {
+        display: block;
+      }
+}
+  

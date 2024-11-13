@@ -1,0 +1,46 @@
+.container {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3rem;
+}
+  
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+  }
+
+.card {
+    height: 490px;
+    padding: 1rem;
+    padding-bottom: 2.5rem;
+    width: 18rem;
+    border-radius: 0.125rem; 
+  }
+  
+.card:hover {
+    background-color: #e2e8f0; 
+}
+
+.card img{
+    height: 12rem
+}
+
+.card h1{
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .card > div:last-child{
+    font-weight: bold;
+    color: #6b7280; 
+  }
+  

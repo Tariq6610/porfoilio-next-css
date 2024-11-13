@@ -2,6 +2,7 @@
 import { useState, forwardRef } from "react";
 import { BsMenuButtonWide } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
+import styles from "./header.module.css"
 
 type HeaderProps = {
   scrollToHero: () => void,
@@ -29,33 +30,36 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({
     return (
       <>
       <header ref={ref} >
-        <div className='flex z-30 fixed  top-0 w-screen bg-slate-200 justify-between px-4 md:px-28 py-4 '>
-          <div className='flex justify-center items-center gap-3'>
-            <h1 className='w-12 h-12 flex font-bold justify-center items-center rounded-full bg-black text-white'>T</h1>
-            <h1 className="font-bold">M Tariq</h1>
-            <a href="https://github.com/Tariq6610" target="_blank"><div className="text-2xl"><FaGithub /></div></a>
+        <div className={styles.bigNav}>
+          <div style={{display:'flex',justifyContent:'center', alignItems:'center',gap:'0.75rem'}} >
+            <h1 style={{ width: '3rem', height: '3rem', display: 'flex', fontWeight: 'bold', justifyContent: 'center', alignItems: 'center', borderRadius: '9999px', backgroundColor: 'black', color: 'white' }}>
+              T
+             </h1>
+            <h1 style={{fontWeight:'bold'}}>M Tariq</h1>
+            <a href="https://github.com/Tariq6610" target="_blank"><div style={{fontSize:"1.5rem",lineHeight: '2rem'}} className="text-2xl"><FaGithub /></div></a>
             </div>
-          <div className="flex items-center">
-            <ul className='font-bold lg:flex items-center gap-12 hidden '>
-              <li className="cursor-pointer hover:bg-slate-300 p-2" onClick={scrollToHero}>Home</li>
-              <li className="cursor-pointer hover:bg-slate-300 p-2" onClick={scrollToAbout}>About</li>
-              <li className="cursor-pointer hover:bg-slate-300 p-2" onClick={scrollToServices}>Services</li>
-              <li className="cursor-pointer hover:bg-slate-300 p-2" onClick={scrollToProjects}>Projects</li>
-              <li className="cursor-pointer hover:bg-slate-300 p-2" onClick={scrollToContact}>Contact Me</li>
+          <div style={{display:'flex',alignItems:'center'}}>
+            <ul>
+              <li onClick={scrollToHero}>Home</li>
+              <li onClick={scrollToAbout}>About</li>
+              <li onClick={scrollToServices}>Services</li>
+              <li onClick={scrollToProjects}>Projects</li>
+              <li onClick={scrollToContact}>Contact Me</li>
             </ul>
           </div>
-          <div onClick={visibility} className={`w-12 h-12 flex justify-center items-center text-2xl cursor-pointer lg:hidden`}><BsMenuButtonWide /></div>
+          <div onClick={visibility} className={styles.menuBurger}><BsMenuButtonWide /></div>
         </div>
-        <div  className={`fixed transition-top ease-in-out duration-500 z-30 w-screen flex flex-col items-center justify-center gap-y-8 bg-[rgba(22,22,22,0.6)] text-white font-bold p-6 backdrop-blur-sm ${navVisibility ? "top-0" : "top-[-500px]"}`}>
-        <h1 className='w-12 h-12 flex font-bold justify-center items-center rounded-full bg-black text-white'>T</h1>
+        <div className={`${styles.mobNav} ${navVisibility ? styles.mobNavVisible : styles.mobNavHidden}`}>
+        <h1 style={{ width: '3rem', height: '3rem', display: 'flex', fontWeight: 'bold', justifyContent: 'center', alignItems: 'center', borderRadius: '50%', backgroundColor: 'black', color: 'white' }}
+        >T</h1>
           <div>
-            <div className='flex font-bold flex-col items-center gap-y-10 text-slate-300'>
-              <div className="cursor-pointer" onClick={() => {scrollToHero(); visibility()}}>Home</div>
-              <div className="cursor-pointer" onClick={() => {scrollToAbout(); visibility()}}>About</div>
-              <div className="cursor-pointer" onClick={() => {scrollToServices(); visibility()}}>Services</div>
-              <div className="cursor-pointer" onClick={() => {scrollToProjects(); visibility()}}>Projects</div>
-              <div className="cursor-pointer" onClick={() => {scrollToContact(); visibility()}}>Contact Me</div>
-              <div onClick={visibility} className=' px-3 py-2 bg-black text-white cursor-pointer absolute top-6 right-4'>X</div>
+            <div style={{ display: 'flex', fontWeight: 'bold', flexDirection: 'column', alignItems: 'center', gap: '2.5rem', color: '#cbd5e1' }}>
+              <div style={{cursor: 'pointer'}}  onClick={() => {scrollToHero(); visibility()}}>Home</div>
+              <div style={{cursor: 'pointer'}}  onClick={() => {scrollToAbout(); visibility()}}>About</div>
+              <div style={{cursor: 'pointer'}}  onClick={() => {scrollToServices(); visibility()}}>Services</div>
+              <div style={{cursor: 'pointer'}}  onClick={() => {scrollToProjects(); visibility()}}>Projects</div>
+              <div style={{cursor: 'pointer'}}  onClick={() => {scrollToContact(); visibility()}}>Contact Me</div>
+              <div onClick={visibility} style={{ padding: '0.75rem 0.75rem', backgroundColor: 'black', color: 'white', cursor: 'pointer', position: 'absolute', top: '1.5rem', right: '1rem' }}>X</div>
             </div>
           </div>
         </div>
@@ -64,4 +68,5 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({
     )
 })
 
+Header.displayName = "Header";
 export default Header
