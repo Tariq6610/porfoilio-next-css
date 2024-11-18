@@ -9,31 +9,48 @@
 }
 
 
+
 .card{
-    width: 300px;
+    max-width: 300px;
+    color: black;
     z-index: 20;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     position: absolute;
+    top: -18rem; 
     right: 0;
-    top: 5rem;
     height: 300px;
     background-color: #e5e7eb; 
-    border-bottom: 4px solid #f97316; 
-}
+    border-bottom-width: 4px;
+    border-bottom-color: #f97316; 
+  }
+  
+  .contactHeading {
+    position: relative;
+    left: -50px;
+    display: flex;
+    top: 3.5rem;
+    font-size: 1.875rem; 
+    font-weight: bold;
+  }
+
+  
+  
+
+    
 
 
-.formContainer{
-    width: 500px;
-    padding: 5rem;
+.formContainer {
+    max-width: 500px;
+    padding: 1.75rem; 
     position: absolute;
-    top: 14rem; 
+    top: 14rem;
     height: 600px;
     color: white;
     background-color: black;
     margin-top: 100px;
-}
-
+  }
+  
 
 .inputWrap{
     border-radius: 0.375rem;
@@ -41,7 +58,7 @@
     border: 1px solid #6b7280; 
 }
 
-.formContainer button{
+.btn{
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.75rem;
@@ -52,16 +69,21 @@
 }
 
 
-.socials{
-    display: none;
+
+.socials {
+    display: none; 
     position: absolute;
     z-index: 40;
-    bottom: 0;
+    color: black;
     width: 100vw;
     margin-top: 0.5rem;
-    left: 20rem; 
+    bottom: 5rem;
+    left: -15rem;
     font-size: 0.875rem; 
-}
+    align-items: flex-end;
+  }
+  
+
 
 
 .socials a button{
@@ -85,31 +107,40 @@
 }
 
 
-
+@media (min-width: 640px) {
+    .formContainer {
+      padding: 2.5rem;
+    }
+    .contactHeading {
+      left: -80px;
+    }
+  }
 
 @media (min-width: 768px) {
-    .card{
-        right: auto;
-    }
+    .card {
+        top: -15rem;
+      }
+
+    .formContainer {
+        padding: 5rem;
+      }
 }
 
 @media (min-width: 1024px) {
-    .card{
-        left: 20rem; 
-        top: auto;
-    }
+    .card {
+        top: 5rem;
+        left: -15rem;
+      }
 
-    .formContainer{
+    .formContainer {
         top: auto;
-        right: 13rem; 
-    }
+        right: 13rem;
+      }
 
-    .socials {
+      .socials {
         display: flex;
-        bottom: 8rem; 
-        width: 15rem; 
-        align-items: flex-end;
-    }
+        width: 15rem;
+      }
 
     .footer{
         display: none; 

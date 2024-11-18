@@ -3,6 +3,9 @@ import { useState, forwardRef } from "react";
 import { BsMenuButtonWide } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import styles from "./header.module.css"
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 type HeaderProps = {
   scrollToHero: () => void,
@@ -26,12 +29,29 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({
       console.log("ok");
       
     }
+
+    const logoRef = useRef(null)
+    const routsRef = useRef<HTMLUListElement>(null)
+  
+    useGSAP(()=>{
+      const tl = gsap.timeline()
+      tl.from(logoRef.current,{
+        y: -30,
+        opacity:0,
+      })
+      if(routsRef.current)
+      tl.from(routsRef.current.children,{
+        y: -40,
+        opacity: 0,
+        stagger: 0.2,
+      })
+    })
   
     return (
       <>
       <header ref={ref} >
         <div className={styles.bigNav}>
-          <div style={{display:'flex',justifyContent:'center', alignItems:'center',gap:'0.75rem'}} >
+          <div ref={logoRef} style={{display:'flex',justifyContent:'center', alignItems:'center',gap:'0.75rem'}} >
             <h1 style={{ width: '3rem', height: '3rem', display: 'flex', fontWeight: 'bold', justifyContent: 'center', alignItems: 'center', borderRadius: '9999px', backgroundColor: 'black', color: 'white' }}>
               T
              </h1>
@@ -39,7 +59,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({
             <a href="https://github.com/Tariq6610" target="_blank"><div style={{fontSize:"1.5rem",lineHeight: '2rem'}} className="text-2xl"><FaGithub /></div></a>
             </div>
           <div style={{display:'flex',alignItems:'center'}}>
-            <ul>
+            <ul ref={routsRef}>
               <li onClick={scrollToHero}>Home</li>
               <li onClick={scrollToAbout}>About</li>
               <li onClick={scrollToServices}>Services</li>

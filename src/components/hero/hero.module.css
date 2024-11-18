@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2.25rem;
+    gap: 7rem;
   }
   
 .textContainer {
@@ -49,20 +49,23 @@
   }
   
   .imageInnerContainer {
-    width: 18rem;
-    z-index: 10;
-    position: relative;
-    order: 1;
+    width: 14rem; 
+    z-index: 10; 
+    position: relative; 
+    bottom: 0; 
+    right: 0; 
+    order: 1; 
 }
 
 .boderBox{
-  width: 18rem;
-  height: 25rem;
-  top: 1rem;
-  left: 1rem;
+  width: 14rem;
+  height: 298.66px; 
   background-color: #e5e7eb; 
-  position: absolute;
-  border: 4px solid black;
+  top: 0; 
+  bottom: 0; 
+  position: absolute; 
+  border-width: 4px; 
+  border-color: black
 }
 
   
@@ -92,6 +95,15 @@
     .container {
       margin-top: 10rem;
       column-gap: 6rem;
+    }
+
+    .imageInnerContainer {
+      width: 18rem; 
+    }
+
+    .boderBox{
+      width: 18rem; 
+      height: 384px; 
     }
 
     .textContainer {

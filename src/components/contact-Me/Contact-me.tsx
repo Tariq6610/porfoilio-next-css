@@ -1,77 +1,43 @@
-import { FormEvent, forwardRef, useRef } from "react"
+"use client"
+import { FormEvent, forwardRef, useRef, useState } from "react"
 import emailjs from '@emailjs/browser';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaWhatsappSquare, FaLinkedin, FaFacebookSquare } from "react-icons/fa";
 import styles from "./contact.module.css"
+import Spinner from "@/utils/Spinner";
 
 
 const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
   const form = useRef<HTMLFormElement>(null);
+  const [Loading, setLoading] = useState(false)
 
   const sendEmail = (e : FormEvent) => {
     e.preventDefault();
-    if(form.current)
+    if(form.current){
+    setLoading(true)
     emailjs
       .sendForm(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, form.current, {
         publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       })
       .then(
         () => {
+          setLoading(false)
           toast.success('Email has sent Successfully!');
         },
         (error) => {
+          setLoading(false)
           toast.error('FAILED...', error.text);
           console.log('FAILED...', error.text)
         },
       );
+    }
   };
 
   return (
     <>
       <div ref={ref} className={styles.container}>
-        <div className={styles.card}>
-          <h1
-            style={{
-              position: "relative",
-              left: "-80px",
-              display: "flex",
-              top: "3.5rem",
-              fontSize: "1.875rem",
-              fontWeight: "bold",
-            }}
-          >
-            Contact{" "}
-            <span
-              style={{
-                fontWeight: "bold",
-                background: "linear-gradient(to right, #fac37b, transparent)",
-              }}
-            >
-              Me
-            </span>
-          </h1>
-          <div
-            style={{
-              fontFamily: "'Lucida Sans', sans-serif",
-              position: "relative",
-              fontSize: "0.875rem",
-              top: "4rem",
-            }}
-          >
-            <div>
-              <p style={{ marginBottom: "1rem" }}>
-                i will read all emails. Send me any message you want and i will
-                get back to you.
-              </p>
-              <p>
-                i need your <span style={{ fontWeight: "bold" }}>Name</span> and{" "}
-                <span style={{ fontWeight: "bold" }}>Email Address</span>, but
-                you will not receive anything other than your reply
-              </p>
-            </div>
-          </div>
-        </div>
+
         <div className={styles.formContainer}>
           <div>
             <h1
@@ -150,11 +116,45 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
                     required
                   />
                 </div>
-                <button type="submit" value="Send" className="">
+                {Loading ? <div className={styles.btn}>Sending...</div> : <button type="submit" value="Send" className={styles.btn}>
                   Send Message
-                </button>
+                </button>}
               </div>
             </form>
+          </div>
+          <div className={styles.card}>
+          <h1
+            className={styles.contactHeading}
+          >
+            Contact{" "}
+            <span
+              style={{
+                fontWeight: "bold",
+                background: "linear-gradient(to right, #fac37b, transparent)",
+              }}
+            >
+              Me
+            </span>
+          </h1>
+          <div
+            style={{
+              fontFamily: "'Lucida Sans', sans-serif",
+              position: "relative",
+              fontSize: "0.875rem",
+              top: "4rem",
+            }}
+          >
+            <div>
+              <p style={{ marginBottom: "1rem" }}>
+                i will read all emails. Send me any message you want and i will
+                get back to you.
+              </p>
+              <p>
+                i need your <span style={{ fontWeight: "bold" }}>Name</span> and{" "}
+                <span style={{ fontWeight: "bold" }}>Email Address</span>, but
+                you will not receive anything other than your reply
+              </p>
+            </div>
           </div>
         </div>
         <div className={styles.socials}>
@@ -183,6 +183,8 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
             </a>
           </div>
         </div>
+        </div>
+
       </div>
       <div>
         <div className={styles.footer}>

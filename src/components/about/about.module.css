@@ -1,13 +1,14 @@
 .container{
-    background-color:  rgb(255, 244, 245); 
+    background-color:  #e4e4e7; 
     z-index: -20;
     padding-left: 30px;
     padding-right: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
     width: 100vw;
+    padding-bottom: 30px;
   }
 
 .para{
@@ -72,6 +73,9 @@
       margin-top: 1.5rem;
 }
 
+.btn:hover{
+  background-color: #f97316;
+}
 
 .imageContainer {
   width: 100vw;
@@ -82,17 +86,21 @@
 }
 
 
-.styleBox{
-  position: absolute;
-  z-index: 10;
-  right: 100px;
-  height: 90%;
-  top: 5%;
-  width: 300px;
+
+.styleBox {
+  position: absolute; 
+  z-index: 10; 
+  right: 100px; 
+  height: 70%; 
+  top: 20%; 
+  width: 300px; 
   background-color: white;
-  box-sizing: border-box;
-  border-bottom: 8px solid #F87171;
+  box-sizing: border-box; 
+  border-bottom-color: #fca5a5; 
+  border-bottom-width: 8px; 
 }
+
+
 
 .outerTextContainer{
   width: 100vw;
@@ -104,6 +112,12 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+.imageBorder {
+  width: 14rem; 
+  margin-top: 13rem; 
+}
+
 
 
 
@@ -131,6 +145,16 @@
         padding-left: 0;
         padding-right: 0;
         width: 66.666667%;
+      }
+
+      .imageBorder{
+        width: 18rem; 
+      }
+
+      .styleBox {
+        right: 0; 
+        height: 90%; 
+        top: 5%; 
       }
 
   }

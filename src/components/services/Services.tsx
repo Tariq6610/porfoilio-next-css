@@ -3,14 +3,47 @@ import { MdDeveloperBoard, MdDevices } from "react-icons/md";
 import { SiXdadevelopers } from "react-icons/si";
 import { mulish } from "@/utils/fonts";
 import styles from "./services.module.css"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+import { useRef } from "react"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Services = forwardRef<HTMLDivElement>((__, ref) => {
+
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(()=>{
+      const tl = gsap.timeline(
+          {
+              scrollTrigger:{
+                  trigger: containerRef.current
+              }
+          }
+      )
+
+      tl.from(containerRef.current,{
+          opacity:0,
+          duration: 1,
+          delay: 0.5
+      })
+      if(containerRef.current)
+      tl.from(containerRef.current.children,{
+          y:-30,
+          stagger: 0.1,
+          duration: 0.7
+          
+      })
+  })
+
+
     return (
       <div ref={ref} className={styles.container}>
           <h1 style={{fontSize: 'clamp(40px, 5vw + 1rem, 60px)'}}
            className={`${mulish}`}>Servic<span style={{background: 'linear-gradient(to right, #fac37b, transparent)'}}>es</span></h1>
   
-      <div className={styles.cardsContainer}>
+      <div ref={containerRef} className={styles.cardsContainer}>
           <div className={styles.card}>
               <div >
             <div className={styles.iconDiv}>
