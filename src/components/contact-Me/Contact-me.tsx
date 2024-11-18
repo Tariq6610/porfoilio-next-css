@@ -11,11 +11,23 @@ import Spinner from "@/utils/Spinner";
 const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
   const form = useRef<HTMLFormElement>(null);
   const [Loading, setLoading] = useState(false)
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  })
 
   const sendEmail = (e : FormEvent) => {
     e.preventDefault();
     if(form.current){
     setLoading(true)
+    setUser({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    })
     emailjs
       .sendForm(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, form.current, {
         publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
@@ -66,6 +78,8 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
                       padding: "0.5rem",
                       height: "100%",
                     }}
+                    value={user.name}
+                    onChange={(e) => setUser((prev)=> ({...prev,name: e.target.value}))}
                     type="text"
                     placeholder="First Name"
                     name="user_name"
@@ -80,6 +94,8 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
                       padding: "0.5rem",
                       height: "100%",
                     }}
+                    value={user.email}
+                    onChange={(e)=> setUser((prev)=>({...prev, email:e.target.value}))}
                     type="email"
                     placeholder="Email Address"
                     name="user_email"
@@ -94,6 +110,8 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
                       padding: "0.5rem",
                       height: "100%",
                     }}
+                    value={user.subject}
+                    onChange={(e)=> setUser((prev)=>({...prev,subject:e.target.value}))}
                     type="text"
                     placeholder="Subject"
                     name="user_subject"
@@ -111,6 +129,8 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
                       padding: "0.5rem",
                       height: "100%",
                     }}
+                    value={user.message}
+                    onChange={(e)=>setUser((prev)=>({...prev,message:e.target.value}))}
                     placeholder="Message"
                     name="user_message"
                     required
@@ -160,7 +180,7 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
         <div className={styles.socials}>
           <div style={{ width: "50%" }}>
             <p>Does not send Emails</p>
-            <p style={{ fontWeight: "bold" }}>Write me on my social network</p>
+            <p style={{ fontWeight: "bold" }}>Write me on my social networks</p>
           </div>
           <div style={{ display: "flex", gap: "0.5rem", color: "white" }}>
             <a href="https://wa.me/923449179576" target="_blank">
@@ -191,7 +211,7 @@ const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
           <div>
             <p style={{ color: "#9ca3af" }}>Does not send Emails</p>
             <p style={{ color: "#d1d5db", fontWeight: "bold" }}>
-              Write me on my social network
+              Write me on my social networks
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.5rem", color: "white" }}>
