@@ -5,7 +5,6 @@ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaWhatsappSquare, FaLinkedin, FaFacebookSquare } from "react-icons/fa";
 import styles from "./contact.module.css"
-import Spinner from "@/utils/Spinner";
 
 
 const ContactMe = forwardRef<HTMLDivElement>((__, ref) => {
